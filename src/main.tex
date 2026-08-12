@@ -1,0 +1,948 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry}
+\usepackage{microtype} 
+\usepackage{pgfplots}
+\usepackage[spanish, es-noshorthands]{babel} 
+\usepackage{setspace}
+\usepackage{tikz}
+\usepackage{hyphenat}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+
+\usetikzlibrary{patterns}
+\pgfplotsset{compat=1.17} 
+\usetikzlibrary{decorations.markings}
+
+% --- CONFIGURACIÓN DE MÁRGENES ---
+\geometry{
+ a4paper,
+ left=2.5cm,
+ right=2.5cm,
+ top=2.5cm, 
+ bottom=2.5cm,
+ includehead
+}
+\setlength{\parindent}{0pt}
+
+% --- CONFIGURACIÓN DE ENCABEZADO Y PIE DE PÁGINA ---
+\pagestyle{fancy}
+\fancyhf{} 
+\setlength{\headwidth}{\textwidth} % Hace que el ancho del encabezado coincida con el ancho del texto
+\setlength{\headheight}{15pt}  % Ajusta la altura del encabezado
+\setlength{\headsep}{20pt}     % Ajusta la separación entre el encabezado y el contenido
+% Encabezado
+
+\fancyhead[R]{
+    \textbf{Curso: 3R4}  \textbf{ - Año: 2026} \\
+    \textbf{Análisis de Sistemas y Señales} 
+}
+
+% Pie de página
+\fancyfoot[L]{\small UTN-FRC}
+\fancyfoot[R]{\thepage} % Número de página a la derecha
+
+% Líneas divisorias
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+\begin{document}
+
+% --- CARÁTULA ---
+\begin{titlepage}
+    \centering
+    {\scshape\LARGE Universidad Tecnológica Nacional \par}
+    \vspace{0.3cm}
+    {\scshape\Large Facultad Regional Córdoba \par}
+    \vspace{1.5cm}
+
+    {\scshape\Large Análisis de Señales y Sistemas \par}
+    \vspace{0.3cm}
+
+    {\Huge\bfseries Trabajo Práctico N°1 \par}
+    \vspace{0.5cm}
+
+    {\LARGE  \par}
+
+    \vspace{1cm}
+
+    \begin{flushleft}
+    \textbf{Integrantes:} \\
+    \quad Rodas Angel -- Legajo 95024 \\
+    \quad Dominguez Matías -- Legajo 400462 \\
+    \quad Rivera Pedro -- Legajo 400716\\
+
+    \vspace{0.5cm}
+
+    \textbf{Curso:} 2R4 \\
+    \textbf{Docentes:} \\
+    \quad Ing. Mario R. Modesti  \\
+    \quad Ing. Dimas  A. Benasulin \\
+    \textbf{Año:} 2026 \\
+    \end{flushleft}
+
+    \vfill
+\end{titlepage}
+
+% --- ÍNDICE ---
+\begin{spacing}{1.5} 
+    % Si NO querés encabezado en el índice, descomentá la siguiente línea:
+     \thispagestyle{plain} 
+    \tableofcontents
+\end{spacing}
+\newpage
+
+\section{Ejercicio 1}
+
+Considerar la siguiente función en variable compleja $f(z) = \sen \left(e^{j\pi/2}z^2\right)$
+
+\vspace{0.4cm}
+
+$a)$ Obtener el conjunto de ceros de la función $z \in S : f(z) = 0$.
+
+\vspace{0.4cm}
+
+$b)$ Demostrar que $S$ es un conjunto, más aún, hay una cantidad infinitas de ceros de la función sobre las siguientes rectas parametrizadas:
+\[
+S \cap \left\{t\, e^{-j\pi/4} : t \in \mathbb{R}\right\} = S_1
+\]
+\vspace{0.2cm}
+\[
+S \cap \left\{t j\, e^{-j\pi/4} : t \in \mathbb{R}\right\} = S_2
+\]
+
+\vspace{0.4cm}
+
+$c)$ El conjunto $S_1$ es discreto, hacer un gráfico de módulos y otro gráfico de argumentos
+principal.
+
+\vspace{0.4cm}
+
+$d)$ El conjunto $S_2$ es discreto, hacer un gráfico de módulos y otro gráfico de argumentos
+principal.
+
+
+\subsection{a) Obtener el conjunto de ceros de la función $z \in S : f(z) = 0$. }
+Para arrancar, recordemos que la expresión $e^{j\pi/2}$  es igual a $j$:
+\[ e^{j\pi/2} = \cos(\pi/2) + j\sin(\pi/2) = j \]
+Ahora, reescribiendo la función:
+\[ f(z) = \sin(e^{j\pi/2} z^2) \]
+\[ f(z) = \sin(j z^2) \]
+
+
+
+Igualamos la función a cero para buscar las raíces:
+\[ \sin(j z^2) = 0 \]
+Sabemos que el seno se hace cero cuando su argumento es un múltiplo entero de $\pi$:
+\[ j z^2 = k\pi \quad \text{para } k \in \mathbb{Z} \]
+Si despejamos $z^2$ pasando la $j$ dividiendo, nos queda:
+\[ z^2 = \frac{k\pi}{j} = -j k\pi \]
+\newpage
+
+Para obtener $z$, tenemos que analizar qué pasa con las raíces dependiendo del signo que tenga 
+el entero $k$:
+\begin{itemize}
+    \item $k > 0$: Acá el término $-jk\pi$ es un número imaginario puro negativo. 
+
+    \vspace{0.1cm}
+    
+    Pasándolo a su forma polar se escribe como $k\pi e^{-j\pi/2}$. Aplicando la raíz cuadrada:
+    \[ z = \sqrt{k\pi e^{-j\pi/2}} = \pm \sqrt{k\pi} e^{-j\pi/4} \]
+    
+    \item $k < 0$: En este caso el término quedaría $-j(-k)\pi = jk\pi$. 
+
+    \vspace{0.1cm}
+    
+    Siendo este último un imaginario puro positivo. En forma polar sería $k\pi e^{j\pi/2}$.
+    \[ z = \sqrt{k\pi e^{j\pi/2}} = \pm \sqrt{k\pi} e^{j\pi/4} \]
+    
+    \item $k = 0$: Esto es directo.
+    \[ z^2 = 0 \implies z = 0 \]
+\end{itemize}
+
+Juntando todo esto, el conjunto total de ceros $S$ queda definido:
+\[ S = \left\{ \pm \sqrt{k\pi} e^{-j\pi/4} : k \in \mathbb{N} \right\} \cup \left\{ \pm \sqrt{n\pi} e^{j\pi/4} : n \in \mathbb{N} \right\} \cup \{0\} \]
+
+\vspace{0.5cm}
+
+\subsection{b) Demostrar que hay infinitos ceros sobre las rectas.}
+
+Para $S_1$: \qquad $z(t) = t e^{-j\pi/4}$ con la restricción $t \in \mathbb{R}$. 
+
+\vspace{0.4cm}
+
+Reemplazamos esta parametrización  en nuestra función $f(z) = \sin(jz^2)$:
+\begin{align*}
+    f(z(t)) &= \sin \left( j (t e^{-j\pi/4})^2 \right) \\
+            &= \sin \left( j \cdot t^2 e^{-j\pi/2} \right)
+\end{align*}	
+	
+Sabemos que $e^{-j\pi/2} = -j$, la expresión queda:
+\[ f(z(t)) = \sin \left( j \cdot t^2 (-j) \right) = \sin(-j^2 t^2) = \sin(t^2) \]
+Para que $z(t)$ sea efectivamente un cero de la función, exigimos que dé cero:
+\[ \sin(t^2) = 0 \implies t^2 = k\pi \quad \text{con } k \in \mathbb{Z} \]
+Como $t$ es un número real, su cuadrado no puede ser negativo, así que $k$ tiene que ser mayor o igual a cero. Despejando $t$:
+\[ t = \pm \sqrt{k\pi} \quad \text{para } k \ge 0, 1, 2, 3, \dots \]
+Como tenemos infinitos valores enteros posibles para $k \ge 0$, también vamos a tener infinitos valores reales para $t$. Con esto comprobamos que \textbf{hay infinitos ceros sobre la recta $S_1$}.
+
+\vspace{0.4cm}
+
+Para $S_2$: \qquad $z(t) = tje^{-j\pi/4}$ con $t \in \mathbb{R}$.
+
+\vspace{0.4cm}
+
+Sabemos que $j = e^{j\pi/2}$, si reescribimos la parametrización queda:
+
+\[
+z(t) = te^{j\pi/2} e^{-j\pi/4} = te^{j\pi/4}
+\]
+
+Reemplazamos en la función:
+
+\begin{align*}
+f(z(t)) &= \sin\left(j(te^{j\pi/4})^2\right) \\
+&= \sin\left(j \cdot t^2 e^{j\pi/2}\right)
+\end{align*}
+
+Teniendo en cuenta nuevamente que $e^{j\pi/2} = j$, nos queda:
+
+\[
+f(z(t)) = \sin\left(j \cdot t^2(j)\right) = \sin(j^2t^2) = \sin(-t^2) = -\sin(t^2)
+\]
+
+Igualamos a cero para buscar las raíces:
+
+\[
+-\sin(t^2) = 0 \implies \sin(t^2) = 0 \implies t^2 = k\pi \quad \text{con } k \in \mathbb{N}_0
+\]
+
+Y llegamos otra vez a la misma condición para el parámetro:
+
+\[
+t = \pm\sqrt{k\pi} \quad \text{para } k = 0, 1, 2, 3, \dots
+\]
+
+Igual que en el caso anterior, como $k$ puede tomar infinitos valores naturales, demostramos que hay \textbf{infinitas soluciones} que caen sobre esta segunda recta $S_2$.
+
+
+
+\subsection{c) Gráficos de módulos y argumentos para $S_1$}
+
+ $S_1$ está formado por los puntos $z_k = \pm \sqrt{k\pi} e^{-j\pi/4}$. Para graficar esto como un espectro discreto, usamos un índice entero $n \in \mathbb{Z}$ que adopte valores positivos como negativos. Lo definimos por partes de la siguiente manera:
+\[
+z_n = \begin{cases} 
+\sqrt{n\pi} \, e^{-j\pi/4} & \text{para } n > 0 \\
+0 & \text{para } n = 0 \\
+-\sqrt{|n|\pi} \, e^{-j\pi/4} & \text{para } n < 0 
+\end{cases}
+\]
+
+\vspace{0.3cm}
+\noindent Gráfico de Módulos ($|z_n|$ vs $n$): \\
+El módulo es la distancia al origen, $|z_n| = \sqrt{|n|\pi}$. En el gráfico, los puntos forman una curva simétrica que crece hacia ambos lados.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=11cm, height=6cm,
+    xlabel={Índice $n$},
+    ylabel={Módulo $|z_n|$},
+    xmin=-5.5, xmax=5.5,
+    ymin=0, ymax=4.5,
+    xtick={-5,-4,-3,-2,-1,0,1,2,3,4,5},
+    axis lines=center,
+    grid=both,
+    grid style={dashed, gray!30},
+    title={Espectro de Módulo para $S_1$ (y $S_2$)}
+]
+\addplot+ [ycomb, mark=*, thick, blue, samples at={-5,...,5}] {sqrt(abs(x)*pi)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.3cm}
+\noindent Gráfico de Argumentos Principales ($\arg(z_n)$ vs $n$): \\
+Tenemos que mirarla definición por partes que armamos:
+\begin{itemize}
+    \item $n > 0$: El argumento es $-\pi/4$.
+    \item $n < 0$: El signo negativo le suma un $\pi$, por lo que el argumento principal queda en $3\pi/4$.
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=11cm, height=6cm,
+    xlabel={Índice $n$},
+    ylabel={Argumento $\arg(z_n)$},
+    xmin=-5.5, xmax=5.5,
+    ymin=-3.5, ymax=3.5,
+    ytick={-pi/4, 3*pi/4},
+    yticklabels={$-\frac{\pi}{4}$, $\frac{3\pi}{4}$},
+    xtick={-5,-4,-3,-2,-1,0,1,2,3,4,5},
+    axis lines=center,
+    grid=both,
+    grid style={dashed, gray!30},
+    title={Espectro de Argumento Principal para $S_1$}
+]
+\addplot+ [ycomb, mark=*, thick, red, samples at={1,...,5}] {-pi/4};
+\addplot+ [ycomb, mark=*, thick, red, samples at={-5,...,-1}] {3*pi/4};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+\subsection{d) Gráficos de módulos y argumentos para $S_2$}
+
+Para la segunda recta, $S_2$ está formado por los puntos $z_{1_k} = \pm \sqrt{k\pi} e^{j\pi/4}$. Aplicando el índice $n$, definimos:
+\[
+z_{1_n}= \begin{cases} 
+\sqrt{n\pi} \, e^{j\pi/4} & \text{para } n > 0 \\
+
+\qquad0 & \text{para } n = 0 \\
+-\sqrt{|n|\pi} \, e^{j\pi/4} & \text{para } n < 0 
+\end{cases}
+\]
+
+\vspace{0.3cm}
+\noindent Gráfico de Módulos ($|z_{1_n}|$ vs $n$): \\
+El módulo sigue siendo $|z_{1_n}| = \sqrt{|n|\pi}$. El gráfico es igual al del conjunto anterior.
+
+\vspace{0.3cm}
+
+\noindent Gráfico de Argumentos Principales ($\arg(z_{1_n})$ vs $n$): 
+\begin{itemize}
+    \item $n > 0$: El argumento es $\pi/4$.
+    \item $n < 0$: Al desfasar por el signo negativo y ajustar para que quede dentro del rango principal $(-\pi, \pi]$, el argumento nos queda en $-3\pi/4$.
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=11cm, height=6cm,
+    xlabel={Índice $n$},
+    ylabel={Argumento $\arg(w_n)$},
+    xmin=-5.5, xmax=5.5,
+    ymin=-3.5, ymax=3.5,
+    ytick={pi/4, -3*pi/4},
+    yticklabels={$\frac{\pi}{4}$, $-\frac{3\pi}{4}$},
+    xtick={-5,-4,-3,-2,-1,0,1,2,3,4,5},
+    axis lines=center,
+    grid=both,
+    grid style={dashed, gray!30},
+    title={Espectro de Argumento Principal para $S_2$}
+]
+\addplot+ [ycomb, mark=*, thick, orange, samples at={1,...,5}] {pi/4};
+\addplot+ [ycomb, mark=*, thick, orange, samples at={-5,...,-1}] {-3*pi/4};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\newpage
+		\section{Ejercicio 2}
+Considerar la relación entre las variables complejas $z, w \in \mathbb{C}$:
+\[
+z = \frac{4w + 8}{w - 1}
+\]
+
+\vspace{0.4cm}
+
+$a)$ Despejar la variable $w$ para obtener una función $w = f(z)$, y luego, calcular $\lim_{z \to \infty} f(z)$.
+
+\vspace{0.4cm}
+
+$b)$ Escribir $f(z)$ en su forma rectangular, $f(z) = u(x,y) + j\,v(x,y)$
+
+\vspace{0.4cm}
+
+$c)$ Mapear la región $|z - 4| \leq 1$, por medio de $w = f(z)$ y graficar ambos dominios.
+
+\vspace{0.4cm}
+
+$d)$ Sea $C$ el contorno de la región del inciso anterior, orientado positivamente. Evaluar la integral $\oint_C f(z)\, dz$.
+
+
+        
+	
+	\subsection{a) Despeje de w y calculo del limite}
+    Partimos de:
+	\begin{equation}
+		z=\frac{4w+8}{w-1}
+	\end{equation}
+	Multiplicamos ambos lados por $(w-1)$:
+	\[ z(w-1) = 4w+8 \]
+	Desarrollando:
+	\[ zw - z = 4w +8 \]
+	Agrupamos los términos con $w$:
+	\[ zw - 4w = 8 + z \]
+	Factorizamos:
+	\[ w(z-4) = 8+z \]
+	Entonces:
+	\[ w = \frac{8+z}{z-4} \]
+\begin{equation}
+	\boxed{f(z) = \frac{8+z}{z-4}, \quad z \neq 4}
+\end{equation}
+		
+	\textbf{Cálculo del límite cuando $z \to \infty$:}
+	\[ \lim_{z \to \infty} f(z) = \lim_{z \to \infty} \frac{8+z}{z-4} \]
+	Dividiendo numerador y denominador por $z$:
+	\[ \lim_{z \to \infty} \frac{\frac{8}{z}+1}{1- \frac{4}{z}} = \frac{0+1}{1-0} = 1 \]
+	Por lo tanto:
+	\[ \boxed{\lim_{z \to \infty} f(z) = 1 }\]
+	
+\subsection{b) Forma rectangular de $f(z)$}
+
+Sea $z = x + jy$. Entonces:
+\[ f(z) = \frac{8+z}{z-4} = \frac{x+8 + jy}{(x-4) + jy} \]
+Multiplicamos numerador y denominador por el conjugado del denominador:
+\[ f(z) = \frac{(x+8 + jy) \cdot [(x-4) - jy]}{[(x-4) + jy] \cdot [(x-4) - jy]} \]
+Desarrollamos el producto:
+\[ (x+8)(x-4) - (x+8)jy + jy(x-4) - j^2y^2 \]
+Como $j^2 = -1$, resulta:
+\[ (x+8)(x-4)+ y^2 +j[y(x-4)- y(x+8)]  \]
+Simplificamos:
+\[ (x+8)(x-4) = x^2 +4x- 32 \]
+\[ y(x-4) - y(x+8) = y(x-4-x-8) = -12y \]
+Por lo tanto, la forma rectangular es $f(z) = u(x,y) + j v(x,y)$ con:
+\[\boxed{ u(x,y) = \frac{x^2+y^2 +4x- 32}{(x-4)^2 + y^2} \quad ; \quad v(x,y) = \frac{-12y}{(x-4)^2 + y^2} } \]	
+\newpage
+\subsection{c) Mapeo de la región $|z-4| \leq 1$}
+Partimos de la relación:
+\[ z - 4 = \frac{4w+8}{w-1} - 4 = \frac{12}{w-1} \]
+Tomando módulo y sustituyendo en $|z-4| \leq 1$:
+\[\boxed{ \frac{12}{|w-1|} \leq 1 \implies |w-1| \geq 12 }\]
+La imagen es el exterior del círculo de centro $(1, 0)$ y radio $12$ en el plano $W$.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.5]
+    % Ejes
+    \draw[->] (-1,0) -- (7,0) node[right] {$Re(z)$};
+    \draw[->] (0,-3) -- (0,3) node[above] {$Im(z)$};
+    
+    % Marcas
+    \foreach \x in {2,4,6} \draw (\x,2pt) -- (\x,-2pt) node[below] {\small $\x$};
+    
+    % Región sombreada (Interior)
+    \fill[pattern=north east lines, pattern color=gray!40] (4,0) circle (1);
+    \draw[thick] (4,0) circle (1);
+    \fill (4,0) circle (1.5pt) node[below] {\small $4$};
+    
+    % Etiqueta con flecha
+    \draw[<-] (4.7, 0.7) -- (5.5, 1.8) node[right] {\small $|z-4|=1$};
+    
+    % Texto inferior Plano Z
+    \node[below] at (3,-3.5) {La región es el interior: $|z-4| \leq 1$};
+    \node[below] at (3,-4.5) {\textbf{Figura 1:} Región en el plano $z$: interior del círculo de centro $4$ y radio $1$.};
+\end{tikzpicture}
+\end{center}
+\vspace{3cm} % Espacio físico real entre los dos dibujos
+
+% --- GRÁFICO 2: PLANO W (ABAJO) ---
+\begin{tikzpicture}[scale=0.4]
+    % Ejes
+    \draw[->] (-14,0) -- (16,0) node[right] {$Re(w)$};
+    \draw[->] (0,-14) -- (0,14) node[above] {$Im(w)$};
+    
+    % Marcas
+    \foreach \x in {-10,-5,1,5,10} \draw (\x,4pt) -- (\x,-4pt) node[below] {\small $\x$};
+    
+    % Sombreado exterior (usando recorte para no ensuciar la página)
+    \begin{scope}
+        \clip (-13.5,-13.5) rectangle (15.5,13.5);
+        \fill[pattern=north east lines, pattern color=gray!40, even odd rule] 
+            (-20,-20) rectangle (20,20) (1,0) circle (12);
+    \end{scope}
+    
+ \draw[thick] (1,0) circle (12); 
+    \fill (1,0) circle (4pt) node[below left] {$1$};
+    % Ecuación con flecha
+    \draw[<-] (9.4, 8.4) -- (14, 11) node[right] {\small $|w-1| = 12$ };
+    
+    % Texto inferior Plano W
+    \node[below] at (1,-15) {La imagen es el exterior de la circunferencia};
+    \node[below] at (1,-16.5) {\textbf{Figura 2:} Imagen en el plano $w$: exterior del círculo 
+    de centro $1$ y radio $12$.};
+\end{tikzpicture}
+
+\subsection{d) Cálculo de la integral de contorno}
+
+Partimos de la función obtenida anteriormente:
+\begin{equation}
+    f(z) = \frac{z+8}{z-4}
+\end{equation}
+
+Se desea calcular la integral sobre el contorno $C: |z-4|=1$:
+\[ \oint_{C} f(z) \, dz = \oint_{C} \frac{z+8}{z-4} \, dz \]
+
+\textbf{Análisis de la singularidad:}
+La función presenta una singularidad en $z=4$. Dado que el contorno $C$ es una circunferencia de radio $1$ centrada en $4$, la singularidad se encuentra dentro del camino de integración.
+
+\textbf{Aplicación del Teorema Integral de Cauchy:} \\
+Utilizamos la fórmula integral de Cauchy para una función de la forma $\frac{g(z)}{z-z_0}$:
+\[ \oint_{C} \frac{g(z)}{z-z_0} \, dz = 2\pi j \cdot g(z_0) \]
+
+Identificamos los componentes en nuestra integral:
+\begin{itemize}
+    \item $g(z) = z+8$
+    \item $z_0 = 4$
+\end{itemize}
+
+Evaluamos $g(z)$ en el punto de la singularidad:
+\[ g(4) = 4 + 8 = 12 \]
+
+Sustituyendo en la fórmula:
+\[ \oint_{C} \frac{z+8}{z-4} \, dz = 2\pi j \cdot (12) \]
+
+Por lo tanto, el resultado final es:
+\begin{equation}
+\boxed{    \oint_{C} \frac{z+8}{z-4} \, dz = 24\pi j}
+\end{equation}
+
+\newpage
+
+\section{Ejercicio 3}
+a) Solucionar la ecuación cuadrática $3z^2 + (2-3j)z - 1 - 3j = 0$, exponiendo claramente su 
+metodología.
+
+\vspace{0.4cm}
+
+b) Factorizar el polinomio cuadrático $4z^2 + 12z + 34$, sabiendo que una de sus raices es $z_1
+= -\frac{3}{2} + \frac{5}{2}j$, exponiendo claramente su metodología.
+
+
+\subsection{a) Solucionar la ecuación cuadrática}
+
+
+Se pide encontrar las soluciones de la siguiente ecuación cuadrática. 
+\[3z^2 + (2-3j) z -1-3j= 0 \]    
+
+Para ello, se utiliza la fórmula de Bhaskara.
+\[ x_1x_2 = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}\]
+De la cuál se determinan los coeficientes de la ecuación. En este caso, los coeficientes son los siguientes: 
+\begin{equation*}
+\centering
+a= 3 \hspace{2cm}  b= 2-3j \hspace{2cm}  c= -1-3j    
+\end{equation*}
+\\
+Resulta en la ecuación:
+\[z_1z_2= \frac{-(2-3j) \pm \sqrt{(2-3j)^2-4(3)(-1-3j)}}{2(3)}\]
+Se acomodan los términos y resuelven los paréntesis
+\[z_1z_2= \frac{-2+3j}{6} \pm \frac{\sqrt{(4-12j-9)- (-12-36j)}}{6}\]
+\[z_1z_2= -\frac{1}{3}+\frac{1}{2}j \pm \frac{\sqrt{7+24j}}{6}\]
+
+Ya casi resuelta la ecuación, debemos encontrar la raíz del número
+complejo $7 + 24j$, primero convirtiéndolo en su forma polar y luego 
+aplicando la \textbf{Fórmula de De Moivre}.
+
+\[r= \sqrt{7^2+24^2} = \sqrt{625} \Rightarrow \qquad r= 25 \] 
+\[\theta = \arctan\frac{24}{7} \Rightarrow \qquad\theta= 0,41\pi\]
+
+\begin{equation*}
+    7+24i=25(\cos{0,41\pi} +j\sin{0,41\pi)} \qquad \textbf{Forma Polar}
+\end{equation*}
+\[\]
+
+\begin{equation*}
+    \sqrt[n]{z}=r^n(\cos{\frac{\theta-2k\pi}{n}}+
+    j\sin{\frac{\theta-2k\pi}{n}}) \qquad\textbf{Fórmula de De Moivre}
+\end{equation*}
+\newpage
+
+La aplicación de la fórmula debe considerar las diferentes soluciones 
+a la misma raíz, para ello se toman diferentes valores de k, en un 
+intervalo de $0 \leq k \leq n-1$ en nuestro caso los valores son 
+$k= 0$ y $k=1$. Sin embargo, luego demostraremos que da igual qué 
+valor se tome porque el resultado es el mismo.
+
+\begin{enumerate}
+    \item[\textbf{k= 0}] 
+    \[\sqrt{7+24j}=\sqrt{25}\cdot\left(\cos{\frac{0,41\pi+2(0)\pi}
+            {2}}+j\sin{\frac{0,41\pi+2(0)\pi}{2}}\right)\]
+            \[\sqrt{7+24j}= 5 \cdot(0,8+j0,6) \]
+            \[\sqrt{7+24j}= 4 + 3j\]
+
+            
+    \item[\textbf{k= 1}]
+    \[\sqrt{7+24j}=\sqrt{25}\cdot\left(\cos{\frac{0,41\pi+2(1)\pi}
+            {2}}+j\sin{\frac{0,41\pi+2(1)\pi}{2}}\right)\]
+            \[\sqrt{7+24j}= 5 \cdot(-0,8-j0,6) \]
+            \[\sqrt{7+24j}= -4 - 3j\]
+\end{enumerate}
+En este caso, utilizaremos el valor de $k=0$ para la resolución.
+\[z_1z_2= -\frac{1}{3}+\frac{1}{2}j \pm (\frac{4}{6}+\frac{3}{6}j)\]
+\[z_1z_2= -\frac{1}{3}+\frac{1}{2}j \pm (\frac{2}{3}+\frac{1}{2}j)\]
+
+
+
+\begin{equation}
+        z_1= -\frac{1}{3}+\frac{1}{2}j + \frac{2}{3}+\frac{1}{2}j
+        \label{ecuacionz1}
+\end{equation}
+
+\begin{equation*}
+    \boxed{z_1=\frac{1}{3}+j}
+\end{equation*}
+
+\begin{equation}
+        z_2= -\frac{1}{3}+\frac{1}{2}j - (\frac{2}{3}+\frac{1}{2}j)
+        \label{ecuacionz2}
+\end{equation}
+
+\begin{equation*}
+    \boxed{z_2=-1}
+\end{equation*} 
+
+
+La solución final a la ecuación $3z^2 + (2-3j) z -1-3j= 0$ es la siguiente:
+\begin{equation*}
+    \boxed{3\cdot[z-(\frac{1}{3}+j)]\cdot[z-(-1)]=0}
+\end{equation*}
+
+En el caso de haber utilizado la raíz de $k=1$ lo que hubiera sucedido es que, debido a que
+es el número complejo opuesto al de la raíz de $k=0$ este se ve contrarrestado por el efecto
+del $\pm$ en la ecuación. Esto es lo que sucede:
+\[\pm \frac{(-4-3j)}{6} \Rightarrow + \frac{(-4-3j)}{6}=-\frac{2}{3}-\frac{1}{3}j\]
+\[\pm \frac{(-4-3j)}{6}\Rightarrow-\frac{(-4-3j)}{6}=\frac{2}{3}+\frac{1}{3}j\]
+Se observa que el resultado del término en sus distintos signos es igual al obtenido
+en la ecuación \eqref{ecuacionz1} y la ecuación \eqref{ecuacionz2}.
+
+\subsection{b) Factorizar el polinomio cuadrático}
+\textbf{Identificación de raíces:} \\
+Dado que el polinomio $P(z) = 4z^2 + 12z + 34$ tiene coeficientes puramente
+reales ($a=4$, $b=12$ y $c=34$), sabemos
+que si un número complejo $z_1$ es raíz de la ecuación polinomial, entonces
+su complejo conjugado $z_2 = \overline{z_1}$ también es otra raíz.
+
+El enunciado nos proporciona la primera raíz:
+\[
+z_1 = -\frac{3}{2} + \frac{5}{2}j
+\]
+Por lo tanto, deducimos inmediatamente que la segunda raíz es su conjugado:
+\[
+z_2 = \overline{z_1} = -\frac{3}{2} - \frac{5}{2}j
+\]
+
+\textbf{Construcción de la forma factorizada:} \\
+Todo polinomio cuadrático de la forma $az^2 + bz + c$ con raíces $z_1$ y $z_2$ se puede factorizar expresándolo como:
+\[
+P(z) = a(z - z_1)(z - z_2)
+\]
+Sustituyendo nuestro coeficiente principal $a = 4$ y las raíces $z_1$ y $z_2$ obtenemos la ecuación factorizada final.
+\begin{equation*}
+\boxed{P(z)=4 \left[ z - \left(-\frac{3}{2} + \frac{5}{2}j\right) \right] \left[ z - \left(-\frac{3}
+{2} - \frac{5}{2}j\right) \right] }
+\end{equation*}
+
+\newpage
+\section{Ejercicio 4}
+b) Evaluar la integral
+\[
+\int_{0}^{2\pi} \frac{1}{\cos(\theta) + 2\sen(\theta) + 3} \, d\theta
+\]
+exponiendo claramente su metodología.
+
+\vspace{0.4cm}
+
+c) Evaluar la integral
+\[
+\int_{-\infty}^{\infty} \frac{2x^2 - 1}{x^4 + 5x^2 + 4} \, dx
+\]
+exponiendo claramente su metodología.
+\vspace{0.4cm}
+
+d) Evaluar la integral
+\[
+\int_{0}^{\infty} \frac{x \sen(x)}{x^4 + 4} \, dx
+\]
+exponiendo claramente su metodología.
+\subsection{a) Evaluar la integral trigonométrica
+}
+\[\int_{0}^{2\pi} \frac{1}{\cos(\theta) + 2\sin(\theta) + 3} \, d\theta\]
+\textbf{Transformación al plano complejo:} \\
+Sea el contorno $C: |z|=1$. Utilizamos las siguientes sustituciones:
+\begin{itemize}
+    \item $\cos(\theta) = \frac{z + z^{-1}}{2} = \frac{z^2+1}{2z}$
+    \item $\sin(\theta) = \frac{z - z^{-1}}{2j} = \frac{z^2-1}{2jz}$
+    \item $d\theta = \frac{dz}{jz}$
+\end{itemize}
+
+Sustituyendo en la integral original:
+\[
+\oint_{C} \frac{1}{\left[ \frac{z^2+1}{2z} \right] + 2\left[ \frac{z^2-1}{2jz} \right] + 3} \frac{dz}{jz}
+\]
+
+\textbf{Simplificación del denominador:} \\
+Introducimos el término $jz$ del diferencial dentro del corchete del denominador:
+\[
+\oint_{C} \frac{1}{jz \left[ \frac{z^2+1}{2z} + \frac{z^2-1}{jz} + 3 \right]} dz = \oint_{C} \frac{1}{\frac{j(z^2+1)}{2} + (z^2-1) + 3jz} dz
+\]
+Multiplicamos numerador y denominador por 2 para eliminar la fracción:
+\[
+\oint_{C} \frac{2}{j z^2 + j + 2z^2 - 2 + 6jz} dz
+\]
+Agrupando términos por potencias de $z$, obtenemos la función $f(z)$:
+\[\boxed{
+\oint_{C} \frac{2}{(2+j)z^2 + 6jz + (-2+j)} dz}
+\]
+
+\subsection*{Cálculo de Polos}
+Buscamos las raíces del denominador $(2+j)z^2 + 6jz + (-2+j) = 0$ mediante Bhaskara:
+\[
+z_{1,2} = \frac{-6j \pm \sqrt{(6j)^2 - 4(2+j)(-2+j)}}{2(2+j)}
+\]
+Operando dentro de la raíz: $(2+j)(-2+j) = -4+2j-2j+j^2 = -4-1 = -5$.
+\[
+z_{1,2} = \frac{-6j \pm \sqrt{-36 - 4(-5)}}{4+2j} = \frac{-6j \pm \sqrt{-16}}{4+2j} = \frac{-6j \pm 4j}{4+2j}
+\]
+
+\textbf{Raíces obtenidas:}
+\begin{enumerate}
+    \item ${z_1 = \frac{-2j}{4+2j} = \frac{-j}{2+j} \cdot \frac{2-j}{2-j} = \frac{-2j+j^2}{4+1} = -\frac{1}{5} - \frac{2}{5}j}$
+    \item ${z_2 = \frac{-10j}{4+2j} = \frac{-5j}{2+j} \cdot \frac{2-j}{2-j} = \frac{-10j+5j^2}{4+1} = -1 - 2j}$
+
+
+    
+\end{enumerate}
+\begin{equation*}
+    \boxed{|z_1| \approx 0,447 \quad (\text{Interior})} \qquad    \boxed{|z_2| \approx 2,236 \quad (\text{Exterior})}
+\end{equation*}
+
+\subsection*{Cálculo del Residuo}
+Calculamos el residuo para el polo simple $z_1$:
+\[
+\text{Res}(f, z_1) = \lim_{z \to z_1} (z-z_1) \frac{2}{(2+j)(z-z_1)(z-z_2)} = \frac{2}{(2+j)(z_1-z_2)}
+\]
+Sustituimos la diferencia de las raíces:
+\[
+z_1 - z_2 = \left( -\frac{1}{5} - \frac{2}{5}j \right) - (-1 - 2j) = \frac{4}{5} + \frac{8}{5}j = \frac{4}{5}(1+2j)
+\]
+Calculamos el denominador del residuo:
+\[
+(2+j) \cdot \frac{4}{5}(1+2j) = \frac{4}{5}(2 + 4j + j + 2j^2) = \frac{4}{5}(2 + 5j - 2) = \frac{4}{5}(5j) = 4j
+\]
+Por lo tanto:
+\[\boxed{
+\text{Res}(f, z_1) = \frac{2}{4j} = \frac{1}{2j}}
+\]
+
+\subsection*{Cálculo de la Integral Final}
+Aplicando el Teorema del Residuo de Cauchy:
+ \[
+\oint f(z) \, dz = 2\pi j \cdot \text{Res}(f, z_1) = 2\pi j \cdot \left( \frac{1}{2j} \right) = \pi
+\] 
+\[
+\boxed{\oint f(z) \, dz = \pi}
+\]
+
+\subsection{b) Evaluar la integral impropia racional}
+\[\int_{-\infty}^{\infty} \frac{2x^2 - 1}{x^4 + 5x^2 + 4} \, dx\]
+
+\textbf{Transformación al plano complejo:} \\
+Consideramos la función de variable compleja asociada $f(z)$ y tomamos un contorno cerrado $C$ que consiste en el intervalo $[-R, R]$ sobre el eje real y una semicircunferencia $C_R$ de radio $R$ en el semiplano superior:
+\[
+f(z) = \frac{2z^2 - 1}{z^4 + 5z^2 + 4}
+\]
+Sabiendo que al hacer $R \to \infty$ la integral sobre $C_R$ tiende a cero, podemos resolver la integral impropia aplicando el Teorema de los Residuos.
+
+\textbf{Factorización del denominador:} \\
+Buscamos expresar el denominador en sus factores primos para hallar las singularidades (polos):
+\[
+z^4 + 5z^2 + 4 = (z^2 + 1)(z^2 + 4) = (z-i)(z+i)(z-2i)(z+2i)
+\]
+
+\subsection*{Cálculo de Polos}
+Los polos de la función se encuentran donde el denominador se anula. Igualando a cero, obtenemos los siguientes polos simples:
+\begin{enumerate}
+    \item $z_1 = i \quad (\text{Interior al contorno, semiplano superior})$
+    \item $z_2 = 2i \quad (\text{Interior al contorno, semiplano superior})$
+    \item $z_3 = -i \quad (\text{Exterior, semiplano inferior})$
+    \item $z_4 = -2i \quad (\text{Exterior, semiplano inferior})$
+\end{enumerate}
+\begin{center}
+\begin{tikzpicture}[
+    % Definimos el estilo para poner flechas a lo largo del contorno
+    flechas/.style={
+        decoration={
+            markings,
+            mark=at position 0.25 with {\arrow[scale=1.5]{latex}},
+            mark=at position 0.75 with {\arrow[scale=1.5]{latex}}
+        },
+        postaction={decorate}
+    }
+]
+
+    % Dibujamos los ejes cartesianos (x e y)
+    \draw[->] (-4,0) -- (4,0) node[right] {$x$};
+    \draw[->] (0,-1) -- (0,3.5) node[above] {$y$};
+
+    % Contorno semicircular (arco)
+    \draw[flechas, line width=1.2pt, red!70!black] 
+        (3,0) arc (0:180:3) 
+        node[pos=0.15, above right, text=black] {$C_R$};
+
+    % Segmento sobre el eje real
+    \draw[flechas, line width=1.2pt, red!70!black] 
+        (-3,0) -- (3,0);
+
+    % Etiquetas de -R y R en el eje x
+    \node[below] at (-3,0) {$-R$};
+    \node[below] at (3,0) {$R$};
+
+    % Marcamos los polos en i y 2i
+    \filldraw (0,1) circle (2pt) node[right=3pt] {$i$};
+    \filldraw (0,2) circle (2pt) node[right=3pt] {$2i$};
+
+\end{tikzpicture}
+\end{center}
+\subsection*{Cálculo de los Residuos}
+Calculamos el residuo para el polo simple $z_1 = i$:
+\[
+\text{Res}(f, z_1) = \lim_{z \to i} (z-i) \frac{2z^2 - 1}{(z-i)(z+i)(z^2+4)} = \frac{2(i)^2 - 1}{(i+i)((i)^2+4)}
+\]
+\[
+\text{Res}(f, z_1) = \frac{-2 - 1}{(2i)(-1+4)} = \frac{-3}{(2i)(3)} = -\frac{1}{2i} \]
+\[
+\boxed{\text{Res}(f, z_1) = \frac{i}{2}}
+\]
+
+Calculamos el residuo para el polo simple $z_2 = 2i$:
+\[
+\text{Res}(f, z_2) = \lim_{z \to 2i} (z-2i) \frac{2z^2 - 1}{(z^2+1)(z-2i)(z+2i)} = \frac{2(2i)^2 - 1}{((2i)^2+1)(2i+2i)}
+\]
+\[
+\text{Res}(f, z_2) = \frac{2(-4) - 1}{(-4+1)(4i)} = \frac{-9}{(-3)(4i)} = \frac{3}{4i} 
+\]
+\[
+\boxed{\text{Res}(f, z_2)= -\frac{3i}{4}}
+\]
+\subsection*{Cálculo de la Integral Final}
+Planteamos la integral sobre el contorno cerrado $C$, la cual se divide en la integral sobre el arco $C_R$ y la integral sobre el segmento real $[-R, R]$:
+\[
+\oint_C f(z) \, dz = \int_{C_R} f(z) \, dz + \int_{-R}^{R} f(x) \, dx = 2\pi i \sum_{k=1}^{n} \text{Res}(f(z), z_k)
+\]
+donde $z_k$ denota los polos en el semiplano superior. Sustituimos los residuos obtenidos para $z_1 = i$ y $z_2 = 2i$:
+\[
+2\pi i \sum_{k=1}^{2} \text{Res}(f(z), z_k) = 2\pi i \left( \frac{i}{2} - \frac{3i}{4} \right) = 2\pi i \left( -\frac{i}{4} \right) = - \frac{2\pi i^2}{4} = \frac{\pi}{2}
+\]
+
+Como el grado del denominador de $f(z)$ es dos unidades mayor que el del numerador, podemos demostrar que la integral $\int_{C_R} f(z) \, dz \to 0$ cuando $R \to \infty$. Entonces tenemos:
+\[
+\text{V.P.} \int_{-\infty}^{\infty} f(x) \, dx = \lim_{R \to \infty} \int_{-R}^{R} f(x) \, dx = 2\pi i \sum_{k=1}^{n} \text{Res}(f(z), z_k)
+\]
+Finalmente, sustituyendo nuestra función y el valor de la sumatoria de residuos, obtenemos el resultado:
+\[\boxed{
+\text{V.P.} \int_{-\infty}^{\infty} \frac{2x^2 - 1}{x^4 + 5x^2 + 4} \, dx = \frac{\pi}{2}}
+\]
+
+\subsection{c) Evaluar la integral }
+\[\int_{0}^{\infty} \frac{x \sin(x)}{x^4 + 4} \, dx\]
+\textbf{Uso de la simetría:} \\
+Primero observamos que los límites de integración no son de $-\infty$ a $\infty$. Como el integrando es una función par, ya que $\frac{(-x)\sin(-x)}{(-x)^4+4} = \frac{x\sin(x)}{x^4+4}$, podemos reescribir la integral utilizando la simetría par:
+\[
+\int_{0}^{\infty} \frac{x \sin(x)}{x^4 + 4} \, dx = \frac{1}{2} \int_{-\infty}^{\infty} \frac{x \sin(x)}{x^4 + 4} \, dx
+\]
+
+\textbf{Transformación al plano complejo:} \\
+Consideramos la función de variable compleja asociada y utilizamos la fórmula de Euler $e^{iz} = \cos(z) + i\sin(z)$ para formar la integral de contorno:
+\[
+\oint_C \frac{z e^{iz}}{z^4 + 4} \, dz
+\]
+donde $C$ es el contorno cerrado que consiste en el intervalo $[-R, R]$ sobre el eje real y la semicircunferencia $C_R$ de radio $R$ en el semiplano superior.
+
+\subsection*{Cálculo de Polos}
+Definimos $f(z) = \frac{z}{z^4+4}$. Los polos se encuentran donde el denominador se anula:
+\[
+z^4 + 4 = 0 \implies z^4 = -4
+\]
+Expresando $-4$ en forma polar como $4e^{i\pi}$, las raíces se obtienen mediante $z_k = \sqrt[4]{4} e^{i(\frac{\pi + 2k\pi}{4})}$ para $k=0,1,2,3$:
+\[\boxed{
+z_0 = 1+i} \quad \boxed{z_1 = -1+i} \quad \boxed{z_2 = -1-i} \quad \boxed{z_3 = 1-i
+}\]
+De estas raíces, los únicos polos que se encuentran en el semiplano superior (interior de nuestro contorno $C$) son $z_0 = 1+i$ y $z_1 = -1+i$.
+
+\subsection*{Cálculo de los Residuos}
+Para aplicar el límite, primero factorizamos el denominador agrupando sus raíces complejas conjugadas: $z^4+4 = (z^2-2z+2)(z^2+2z+2)$. Las raíces en el semiplano superior son $z_0 = 1+i$ y $z_1 = -1+i$.
+
+Calculamos el residuo para el polo simple $z_0 = 1+i$:
+\[
+\text{Res}(f(z)e^{iz}, 1+i) = \lim_{z \to 1+i} (z-(1+i)) \frac{z e^{iz}}{(z-(1+i))(z-(1-i))(z^2+2z+2)}
+\]
+\[
+\text{Res}(f(z)e^{iz}, 1+i) = \frac{(1+i) e^{i(1+i)}}{((1+i)-(1-i))((1+i)^2+2(1+i)+2)}
+\]
+\[
+\text{Res}(f(z)e^{iz}, 1+i) = \frac{(1+i) e^{-1+i}}{(2i)(2i+2+2i+2)}\]
+
+\vspace{0.3cm}
+
+\[
+\text{Res}(f(z)e^{iz}, 1+i) = \frac{(1+i) e^{-1+i}}{(2i)(4+4i)} 
+\]
+
+\vspace{0.3cm}
+
+\[
+\text{Res}(f(z)e^{iz}, 1+i) = \frac{(1+i) e^{-1+i}}{8i(1+i)} 
+\]
+
+\vspace{0.3cm}
+
+\[
+\text{Res}(f(z)e^{iz}, 1+i) =\frac{e^{-1+i}}{8i}
+\]
+
+\vspace{0.3cm}
+
+Calculamos el residuo para el polo simple $z_1 = -1+i$:
+\[
+\text{Res}(f(z)e^{iz}, -1+i) = \lim_{z \to -1+i} (z-(-1+i)) \frac{z e^{iz}}{(z^2-2z+2)(z-(-1+i))(z-(-1-i))}
+\]
+
+\[
+\text{Res}(f(z)e^{iz}, -1+i) = \frac{(-1+i) e^{i(-1+i)}}{((-1+i)^2-2(-1+i)+2)((-1+i)-(-1-i))}
+\]
+
+\[
+\text{Res}(f(z)e^{iz}, -1+i) = \frac{(-1+i) e^{-1-i}}{(-2i+2-2i+2)(2i)} 
+\]
+
+\[\text{Res}(f(z)e^{iz}, -1+i) = \frac{(-1+i) e^{-1-i}}{(4-4i)(2i)}\]
+\[
+\text{Res}(f(z)e^{iz}, -1+i) = \frac{(-1+i) e^{-1-i}}
+{8i+8}
+\]
+Factorizando el denominador como $8i+8 = -8i(-1+i)$, podemos simplificar:
+\[
+\text{Res}(f(z)e^{iz}, -1+i) = \frac{(-1+i) e^{-1-i}}{-8i(-1+i)} \]
+\[\text{Res}(f(z)e^{iz}, -1+i) =-\frac{e^{-1-i}}{8i}\]
+
+Sumando los residuos obtenidos:
+\[
+\sum \text{Res} = \frac{e^{-1+i}}{8i} - \frac{e^{-1-i}}{8i} = \frac{e^{-1}}{8i} (e^i - e^{-i})
+\]
+Sabiendo que $\sin(1) = \frac{e^i - e^{-i}}{2i}$, reemplazamos $(e^i - e^{-i})$ por $2i\sin(1)$:
+\[\boxed{
+\sum \text{Res} = \frac{e^{-1}}{8i} (2i \sin(1)) = \frac{\sin(1)}{4e}
+}\]
+\subsection*{Cálculo de la Integral Final}
+Aplicando el Teorema de los Residuos y el Lema de Jordan cuando $R \to \infty$:
+\[
+\text{V.P.} \int_{-\infty}^{\infty} \frac{x e^{ix}}{x^4 + 4} \, dx = 2\pi i \left( \frac{\sin(1)}{4e} \right) = \frac{\pi \sin(1)}{2e} i
+\]
+Separando en parte real e imaginaria mediante $e^{ix} = \cos(x) + i\sin(x)$:
+\[
+\int_{-\infty}^{\infty} \frac{x \cos(x)}{x^4 + 4} \, dx + i \int_{-\infty}^{\infty} \frac{x \sin(x)}{x^4 + 4} \, dx = 0 + i \frac{\pi \sin(1)}{2e}
+\]
+Igualando las partes imaginarias:
+\[
+\text{V.P.} \int_{-\infty}^{\infty} \frac{x \sin(x)}{x^4 + 4} \, dx = \frac{\pi \sin(1)}{2e}
+\]
+Finalmente, multiplicamos por $\frac{1}{2}$ debido a la simetría inicial:
+\[
+\int_{0}^{\infty} \frac{x \sin(x)}{x^4 + 4} \, dx = \frac{1}{2} \left( \frac{\pi \sin(1)}{2e} \right) 
+\]
+\[
+\boxed{\int_{0}^{\infty} \frac{x \sin(x)}{x^4 + 4} \, dx = \frac{\pi \sin(1)}{4e}}
+\]
+\end{document}
